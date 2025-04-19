@@ -63,7 +63,7 @@
       "id": 6,
       "title": "Build Visual Process Editor with React Flow",
       "description": "Create the drag-and-drop visual editor for business process modeling using React Flow.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         5
       ],
@@ -75,7 +75,7 @@
       "id": 7,
       "title": "Implement Risk and Control Framework Management",
       "description": "Develop the system for managing risk taxonomies, control libraries, and governance data.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         5
       ],

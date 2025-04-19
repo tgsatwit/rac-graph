@@ -11,7 +11,7 @@ const menuItems = {
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: '📚' },
     { name: 'Search KB', href: '/dashboard/knowledge/search', icon: '🔎' },
     { name: 'Process Models', href: '/dashboard/processes', icon: '🔄' },
-    { name: 'Risk Framework', href: '/dashboard/risks', icon: '⚠️' },
+    { name: 'Risk Management', href: '/dashboard/risk-management', icon: '⚠️' },
     { name: 'Settings', href: '/dashboard/settings', icon: '⚙️' },
   ],
   [UserRole.ANALYST]: [
@@ -19,12 +19,14 @@ const menuItems = {
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: '📚' },
     { name: 'Search KB', href: '/dashboard/knowledge/search', icon: '🔎' },
     { name: 'Process Models', href: '/dashboard/processes', icon: '🔄' },
+    { name: 'Risk Management', href: '/dashboard/risk-management', icon: '⚠️' },
     { name: 'Analysis', href: '/dashboard/analysis', icon: '🔍' },
     { name: 'Reports', href: '/dashboard/reports', icon: '📝' },
   ],
   [UserRole.REVIEWER]: [
     { name: 'Dashboard', href: '/dashboard', icon: '📊' },
     { name: 'Process Models', href: '/dashboard/processes', icon: '🔄' },
+    { name: 'Risk Management', href: '/dashboard/risk-management', icon: '⚠️' },
     { name: 'Analysis', href: '/dashboard/analysis', icon: '🔍' },
     { name: 'Reports', href: '/dashboard/reports', icon: '📝' },
   ],

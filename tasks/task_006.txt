@@ -1,6 +1,6 @@
 # Task ID: 6
 # Title: Build Visual Process Editor with React Flow
-# Status: pending
+# Status: done
 # Dependencies: 5
 # Priority: high
 # Description: Create the drag-and-drop visual editor for business process modeling using React Flow.
