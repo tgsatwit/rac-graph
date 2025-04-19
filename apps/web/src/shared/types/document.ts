@@ -3,10 +3,11 @@
  */
 export enum DocumentCategory {
   POLICY = 'policy',
-  REGULATORY = 'regulatory',
   PROCEDURE = 'procedure',
   GUIDELINE = 'guideline',
   STANDARD = 'standard',
+  REPORT = 'report',
+  REFERENCE = 'reference',
   OTHER = 'other'
 }
 
@@ -16,9 +17,9 @@ export enum DocumentCategory {
 export interface Document {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   category: DocumentCategory;
-  tags: string[];
+  tags?: string[];
   fileUrl: string;
   fileType: string;
   fileSize: number;
@@ -41,7 +42,7 @@ export interface DocumentVersion {
   extractedText: string;
   createdBy: string;
   createdAt: Date;
-  changes: string;
+  changes?: string;
 }
 
 /**

@@ -39,7 +39,7 @@
       "id": 4,
       "title": "Implement Vector Embedding and Semantic Search",
       "description": "Create the system for generating and storing vector embeddings of documents and implementing semantic search capabilities.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         3
       ],

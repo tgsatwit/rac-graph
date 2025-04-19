@@ -36,4 +36,5 @@ export async function closeNeo4jConnection(): Promise<void> {
 }
 
 // Export document functions
-export * from './documents'; 
+export * from './documents';
+export * from './embeddings'; 

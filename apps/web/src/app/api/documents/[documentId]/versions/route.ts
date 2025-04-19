@@ -3,9 +3,23 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   getDocumentById,
   getDocumentVersions,
-  createDocumentVersion
+  createDocumentVersion,
+  getEmbeddings
 } from 'database';
 import { getServerSession } from 'next-auth';
+import { initializePinecone, upsertVectors, Vector } from 'ai-service';
+
+if (process.env.PINECONE_API_KEY && process.env.PINECONE_ENVIRONMENT) {
+  initializePinecone(process.env.PINECONE_API_KEY, process.env.PINECONE_ENVIRONMENT);
+}
+
+function chunkText(text: string, size = 2000): string[] {
+  const chunks: string[] = [];
+  for (let i = 0; i < text.length; i += size) {
+    chunks.push(text.slice(i, i + size));
+  }
+  return chunks;
+}
 
 /**
  * GET /api/documents/[documentId]/versions
@@ -108,6 +122,25 @@ export async function POST(
       changes: changes || 'Updated document'
     });
     
+    /* embeddings */
+    try {
+      const chunks = chunkText(extractedText);
+      const embeddings = await getEmbeddings(chunks);
+      const vectors: Vector[] = embeddings.map((values: number[], idx: number) => ({
+        id: `${documentId}-v${document.version + 1}-chunk-${idx}`,
+        values,
+        metadata: {
+          documentId,
+          version: document.version + 1,
+          chunkIndex: idx,
+          text: chunks[idx],
+        },
+      }));
+      await upsertVectors('kb', vectors, embeddings[0].length);
+    } catch (err) {
+      console.error('Embedding/upsert version failed:', err);
+    }
+
     return NextResponse.json(result, { status: 201 });
   } catch (error) {
     console.error(`Error creating version for document ${documentId}:`, error);

@@ -9,6 +9,7 @@ const menuItems = {
     { name: 'Dashboard', href: '/dashboard', icon: '📊' },
     { name: 'Users', href: '/dashboard/users', icon: '👥' },
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: '📚' },
+    { name: 'Search KB', href: '/dashboard/knowledge/search', icon: '🔎' },
     { name: 'Process Models', href: '/dashboard/processes', icon: '🔄' },
     { name: 'Risk Framework', href: '/dashboard/risks', icon: '⚠️' },
     { name: 'Settings', href: '/dashboard/settings', icon: '⚙️' },
@@ -16,6 +17,7 @@ const menuItems = {
   [UserRole.ANALYST]: [
     { name: 'Dashboard', href: '/dashboard', icon: '📊' },
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: '📚' },
+    { name: 'Search KB', href: '/dashboard/knowledge/search', icon: '🔎' },
     { name: 'Process Models', href: '/dashboard/processes', icon: '🔄' },
     { name: 'Analysis', href: '/dashboard/analysis', icon: '🔍' },
     { name: 'Reports', href: '/dashboard/reports', icon: '📝' },
