@@ -1,0 +1,11 @@
+# Task ID: 11
+# Title: Develop Risk Assessment and Control Evaluation Agents
+# Status: pending
+# Dependencies: 9, 10
+# Priority: high
+# Description: Create the specialized AI agents for identifying unmitigated risks and evaluating control effectiveness.
+# Details:
+Implement specialized prompts for risk identification and control evaluation. Create algorithms to map identified risks to the organizational taxonomy. Develop control effectiveness scoring based on defined criteria. Build reference tracking to link findings to source documents. Implement confidence scoring for findings. Create structured output format for risk and control assessments. Optimize prompts for accuracy and performance with the local LLM.
+
+# Test Strategy:
+Test risk identification with various process models. Verify accuracy of risk categorization according to taxonomy. Test control effectiveness evaluation. Measure performance and optimize as needed.

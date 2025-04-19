@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Neo4j Graph Database
+  neo4j:
+    image: neo4j:5.15.0
+    container_name: rac-neo4j
+    ports:
+      - "7474:7474" # HTTP
+      - "7687:7687" # Bolt
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*,algo.*
+      - NEO4J_dbms_security_procedures_whitelist=apoc.*,algo.*
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+    networks:
+      - rac-network
+
+  # Pinecone Vector Database (Using the local index service for development)
+  pinecone-proxy:
+    image: pinecone/pinecone-proxy:latest
+    container_name: rac-pinecone-proxy
+    ports:
+      - "8080:8080"
+    environment:
+      - PINECONE_API_KEY=your-pinecone-api-key
+    networks:
+      - rac-network
+
+  # Local LLM Server (Using Ollama for local LLM deployment)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: rac-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    networks:
+      - rac-network
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
+  ollama_models:
+
+networks:
+  rac-network:
+    driver: bridge 

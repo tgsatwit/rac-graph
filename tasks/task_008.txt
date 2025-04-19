@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Develop Automatic Process Extraction from Documents
+# Status: pending
+# Dependencies: 3, 4, 5, 6
+# Priority: medium
+# Description: Create the AI-driven system to automatically generate draft process models from uploaded documentation.
+# Details:
+Implement document parsing logic to extract process-related information. Create prompt engineering for the local LLM to identify process steps, decisions, and controls. Develop algorithms to convert extracted information into graph structure. Build confidence scoring for extracted elements. Create UI for reviewing and refining auto-generated models. Implement error handling for edge cases and low-confidence extractions.
+
+# Test Strategy:
+Test extraction with various document formats and process complexities. Measure extraction accuracy against manually created models. Test handling of edge cases and ambiguous process descriptions. Verify the refinement workflow for correcting extraction errors.

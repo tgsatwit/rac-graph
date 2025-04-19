@@ -1,0 +1,160 @@
+# Product Requirements Document
+
+## 1 Purpose & Problem Solved
+Organizations face challenges ensuring their business processes comply with internal policies and external regulations while minimizing risk. Manual compliance checks and risk assessments are time-consuming and error-prone, often leaving gaps in controls or missing opportunities for process improvement. This platform uses AI-driven analysis to evaluate business process documentation against relevant policies and regulations, identifying compliance gaps, assessing risk controls, and suggesting process re-engineering or automation opportunities.
+
+## 2 Why It's Being Built
+Organizations need to rapidly model their business processes and automatically evaluate them for compliance and risks. The platform will leverage AI to recommend stronger controls and smarter process optimizations, facilitating faster compliance reviews, proactive risk management, and continuous process improvement – all within a secure environment where proprietary data and AI models run locally.
+
+## 3 Goals & Success Metrics
+- **Compliance Automation**: 100% of uploaded business processes automatically checked against internal policies and regulatory obligations, with all compliance gaps highlighted using RAG status indicators
+- **Risk Identification**: 95% of unmitigated risks correctly identified and mapped to organizational risk taxonomies
+- **Actionable Insights**: Generate specific recommendations for addressing gaps in 90% of identified issues
+- **Efficiency**: Reduce time spent on compliance reviews by 60% compared to manual methods
+- **Collaboration**: Enable multiple users to work concurrently on process models with zero conflicts
+- **Data Security**: Achieve 100% data sovereignty by keeping all processing local with no external AI dependencies
+
+## 4 Elevator Pitch
+Our AI-driven Process Compliance and Risk Management Platform enables organizations to rapidly evaluate business processes against policies and regulations, identify compliance gaps and risk exposures, and receive actionable recommendations for improvements—all within a secure, collaborative environment that keeps sensitive data within your control.
+
+## 5 Target Users & Personas
+1. **Admin**: Platform administrator who configures the system, manages knowledge bases, risk taxonomies, user accounts, and AI model settings. Integrates new models, sets up authentication, and oversees all projects.
+
+2. **Risk/Compliance Analyst**: Primary user who creates and analyzes projects. Uploads process documentation, models business processes, and initiates AI analysis. Interprets findings and iterates on process design or controls as needed.
+
+3. **Reviewer (Audit/Compliance Officer)**: Reviews process models and analysis results with read-only access. Verifies findings and approves recommended changes, ensuring controls and process changes adequately address requirements.
+
+## 6 User Flow
+1. **Admin Setup Flow**:
+   - Admin configures system settings and knowledge bases
+   - Uploads relevant policies and regulatory documents
+   - Defines risk and control taxonomies
+   - Creates user accounts and assigns roles
+
+2. **Analyst Workflow**:
+   - Create new project for a specific business area
+   - Upload process documentation in bulk
+   - Review and refine auto-generated process model
+   - Run AI analysis on the modeled process
+   - Review findings and implement recommendations
+   - Share with reviewers for approval
+
+3. **Reviewer Workflow**:
+   - Access assigned projects in read-only mode
+   - Review process models and compliance analysis
+   - Add comments or approve recommendations
+   - Export reports for documentation and auditing
+
+## 7 Core Features
+1. **Knowledge Base Management**: Central repository for policies, regulations, and frameworks with document categorization, version control, and semantic search.
+
+2. **Process Modeling**: Visual editor using React Flow to create and manage business process models stored as graph models in Neo4j.
+
+3. **Risk & Control Framework**: Management of risk taxonomies, control libraries, and governance data with visualizations and mappings.
+
+4. **AI Analysis Workflow**: LangGraph-orchestrated AI agents that perform compliance gap analysis, risk exposure assessment, control efficacy evaluation, and recommendations.
+
+5. **Collaborative Editing**: Real-time collaboration with concurrent editing, comments/annotations, activity logs, and role-based access controls.
+
+6. **Reporting & Outputs**: Structured storage of analysis results with customizable report views, exports to PDF/CSV, and historical comparisons.
+
+7. **Administration**: User management, authentication, model configuration, and system monitoring capabilities.
+
+## 8 User Stories
+
+### Admin Stories
+- As an Admin, I want to upload and organize all relevant internal policies, regulatory documents, and frameworks, so that analysts have a comprehensive knowledge base for compliance analysis.
+- As an Admin, I want to define the taxonomy of risks and controls along with the organization's risk appetite thresholds, so that the AI can align its analysis with our risk framework.
+- As an Admin, I want to manage user roles and permissions (Admin/Analyst/Reviewer) across projects, so that access to sensitive data and editing capabilities are appropriately controlled.
+- As an Admin, I want to select or change the AI model the platform uses, so that we can leverage improved models in the future or meet specific IT requirements.
+
+### Analyst Stories
+- As an Analyst, I want to create a new project for a specific business area or process, so that I can isolate its documentation and analysis from other projects while still accessing global reference knowledge.
+- As an Analyst, I want to upload process documents in bulk, so that I can quickly set up the initial knowledge base for analysis without adding files one by one.
+- As an Analyst, I want the system to parse uploaded process documentation into a draft process graph, so that I have a starting point that I can refine rather than modeling from scratch.
+- As an Analyst, I want to visually edit the process flow using a drag-and-drop diagram editor, so that I can easily rearrange steps, add missing steps/controls, and define decision points or loops.
+- As an Analyst, I want to validate the process model for correctness, so that I know the model accurately reflects the real process before analysis.
+- As an Analyst, I want to run an AI-driven analysis on the modeled process, so that I receive a report of compliance issues, risk exposures, and improvement recommendations.
+- As an Analyst, I want the analysis results stored and versioned, so that I can compare how risks/compliance gaps change as the process is improved over time.
+
+### Reviewer Stories
+- As a Reviewer, I want to view the process model and all related documentation in a read-only mode, so that I can understand the context before reviewing the AI's findings.
+- As a Reviewer, I want to see a clear summary of compliance gaps and risk issues identified, so that I can focus on the critical areas that need attention.
+- As a Reviewer, I want to see references to specific policies or regulations for each identified gap, so that I can verify the relevance and severity of the compliance issue.
+- As a Reviewer, I want to add comments or approval flags on the AI's recommended actions, so that I can communicate which suggestions to implement or if further analysis is needed.
+- As a Reviewer, I want to export the final compliance analysis report to PDF, so that I can share it with external auditors or save it as evidence of our compliance review.
+
+## 9 Detailed Acceptance Criteria
+
+### Knowledge Base Management
+- System must support uploading documents in PDF, Word, Excel, and text formats
+- OCR text extraction must function locally without sending data to external services
+- Documents must be categorizable with custom tags and labels
+- Version control must maintain history with timestamps and uploader notes
+- Search must support both keyword and semantic vector search
+- System must create and store vector embeddings for all documents
+- Documents must be designatable as either global or project-specific
+
+### Process Modeling
+- System must auto-generate draft process models from uploaded documents
+- Visual editor must support adding, editing, and connecting process steps
+- System must represent processes as graph models in Neo4j with appropriate node types
+- Process validation must check for logical consistency and completeness
+- Process models must support versioning and comparison between versions
+- Models must properly capture decision points, loops, and control linkages
+
+### AI Analysis
+- Analysis must check processes against all relevant policies and regulations
+- System must identify and categorize unmitigated risks according to the risk taxonomy
+- Analysis must evaluate control effectiveness for each identified risk
+- System must provide specific, actionable recommendations for addressing gaps
+- Analysis must run locally without sending data to external APIs
+- Results must include references to specific source documents for each finding
+- Analysis should complete in under 5 minutes for most processes
+
+### Collaboration
+- Multiple users must be able to edit the same process simultaneously
+- Real-time updates must propagate to all users within 2 seconds
+- User actions must be logged in an activity feed with timestamps
+- Comments must be attachable to specific process elements or findings
+- Interface must adapt based on user role permissions
+
+### Reporting
+- Analysis results must be stored in structured JSON format
+- Reports must be viewable in the UI with filterable sections
+- System must support one-click export to well-formatted PDF
+- Key data must be exportable to CSV/Excel format
+- Historical comparisons must highlight changes between analyses
+
+### Security & Privacy
+- All data must be encrypted both in transit and at rest
+- User access must be restricted based on role permissions
+- System must support running LLMs locally with no external API calls
+- Data deletion must purge all associated vectors and graph nodes
+
+## 10 Non-Functional Requirements
+- **Security**: Platform must ensure all data is stored securely with access restricted by user role
+- **Privacy**: System must operate entirely locally with no data sent to external services
+- **Performance**: Platform must handle projects with at least 1000 pages of documentation and processes with 100+ steps
+- **Scalability**: Database design must support efficient queries as data volume grows
+- **Usability**: UI/UX must be intuitive for non-technical users with clear labeling and guided workflows
+- **Reliability**: System must handle errors gracefully and ensure data integrity during all operations
+- **Maintainability**: Code must follow a monorepo structure to ensure synchronization across modules
+
+## 11 Constraints & Dependencies
+- System requires local deployment of an LLM (e.g., LLaMA) for analysis
+- Platform depends on Neo4j graph database for process modeling
+- Vector database (Pinecone) required for document embedding storage
+- Next.js and React Flow are necessary for frontend development
+- Firebase components needed for authentication and real-time collaboration
+- Network connectivity required between components but not to external AI services
+- Hardware requirements include sufficient RAM and possibly GPU resources for local LLM inference
+
+## 12 Open Questions / Risks
+- Will the local LLM performance be sufficient for complex analysis without external APIs?
+- How will the system handle very large processes that exceed typical graph visualization capabilities?
+- What is the scaling approach for organizations with hundreds of processes to analyze?
+- How will the system address potential inconsistencies between different regulations/policies?
+- What metrics will best measure the accuracy and efficacy of the AI analysis?
+- Are there performance concerns with real-time collaboration on complex process models?
+- How will the system handle edge cases in automatic process extraction from documents?

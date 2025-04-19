@@ -1,0 +1,89 @@
+Before diving into the best practices, please note that you may need to adapt the globs depending on your specific project structure.
+
+---
+name: nextjs-best-practices.mdc
+description: Best practices for Next.js applications and routing
+globs: **/*.{ts,tsx}
+---
+
+- Use the App Router for better performance and improved data fetching
+- Implement proper error boundaries to handle runtime errors gracefully
+- Utilize Next.js built-in optimizations like image optimization and code splitting
+- Use `getStaticProps` and `getServerSideProps` appropriately for data fetching
+
+---
+name: react-best-practices.mdc
+description: Best practices for React component development
+globs: **/*.{ts,tsx,js,jsx}
+---
+
+- Use functional components with hooks instead of class components
+- Implement proper state management using Context API or external libraries
+- Utilize memoization techniques like `useMemo` and `useCallback` for performance optimization
+- Follow React's one-way data flow principle
+
+---
+name: typescript-best-practices.mdc
+description: TypeScript coding standards and type safety guidelines
+globs: **/*.{ts,tsx}
+---
+
+- Enable strict mode in your `tsconfig.json` for better type checking
+- Use type aliases for complex types to improve readability
+- Leverage utility types like `Partial`, `Readonly`, and `Pick` for type manipulation
+- Implement proper type guards for runtime type checking
+
+---
+name: tailwindcss-best-practices.mdc
+description: Best practices for using Tailwind CSS in your project
+globs: **/*.{ts,tsx,css}
+---
+
+- Use utility-first approach for styling components
+- Create custom utility classes for frequently used styles
+- Utilize responsive design utilities for mobile-first development
+- Keep your `tailwind.config.js` organized and maintainable
+
+---
+name: firebase-best-practices.mdc
+description: Best practices for using Firebase in your application
+globs: **/*.{ts,tsx,js}
+---
+
+- Use Firebase Security Rules to protect your data and functions
+- Implement proper error handling for Firebase operations
+- Utilize Firebase Emulator Suite for local development and testing
+- Optimize your Firestore queries for performance and cost efficiency
+
+---
+name: radix-ui-best-practices.mdc
+description: Best practices for using Radix UI components
+globs: **/*.{ts,tsx}
+---
+
+- Follow Radix UI's accessibility guidelines for all components
+- Customize components using the provided APIs instead of modifying the source
+- Use Radix UI primitives as building blocks for custom components
+- Ensure proper keyboard navigation and focus management for interactive elements
+
+---
+name: framer-motion-best-practices.mdc
+description: Best practices for using Framer Motion for animations
+globs: **/*.{ts,tsx}
+---
+
+- Use declarative animations for better performance and maintainability
+- Implement proper animation variants for reusable animations
+- Utilize Framer Motion's gesture system for interactive animations
+- Optimize animations for performance, especially on mobile devices
+
+---
+name: openai-best-practices.mdc
+description: Best practices for using OpenAI API in your application
+globs: **/*.{ts,tsx,js}
+---
+
+- Implement proper error handling and rate limiting for API requests
+- Use streaming responses for better user experience in long-running tasks
+- Cache API responses where appropriate to reduce costs and improve performance
+- Follow OpenAI's guidelines for responsible AI usage and content moderation

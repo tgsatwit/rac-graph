@@ -1,0 +1,11 @@
+# Task ID: 12
+# Title: Implement Real-time Collaboration Features
+# Status: pending
+# Dependencies: 2, 6
+# Priority: medium
+# Description: Develop the system for real-time collaborative editing of process models with conflict resolution.
+# Details:
+Integrate Firebase Realtime Database for collaborative editing. Implement operational transformation or CRDT algorithms for conflict resolution. Create activity logging with user attribution. Build comment and annotation system for process elements. Develop presence indicators to show active users. Implement role-based editing restrictions. Create notification system for changes and comments.
+
+# Test Strategy:
+Test concurrent editing by multiple users. Verify changes propagate within 2 seconds. Test conflict resolution with simultaneous edits. Verify activity logging and comment functionality. Test role-based restrictions for different user types.

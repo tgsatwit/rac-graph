@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Build Visual Process Editor with React Flow
+# Status: pending
+# Dependencies: 5
+# Priority: high
+# Description: Create the drag-and-drop visual editor for business process modeling using React Flow.
+# Details:
+Integrate React Flow library into the Next.js frontend. Create custom node and edge components for different process elements. Implement drag-and-drop functionality for adding and connecting nodes. Build toolbars and property panels for editing node properties. Create validation logic to check process model consistency. Implement save/load functionality to persist models to Neo4j. Ensure the editor is responsive and works on different screen sizes.
+
+# Test Strategy:
+Test creation of various process models with different complexities. Verify drag-and-drop functionality works smoothly. Test validation logic with valid and invalid process configurations. Ensure models are correctly saved to and loaded from the database.

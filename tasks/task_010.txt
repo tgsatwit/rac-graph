@@ -1,0 +1,11 @@
+# Task ID: 10
+# Title: Develop Compliance Gap Analysis Agent
+# Status: pending
+# Dependencies: 9
+# Priority: high
+# Description: Create the specialized AI agent for identifying compliance gaps between processes and policies/regulations.
+# Details:
+Implement specialized prompts for compliance analysis. Create algorithms to match process elements against policy requirements. Develop RAG status indicators for compliance levels. Build reference tracking to link findings to source documents. Implement confidence scoring for findings. Create structured output format for compliance gaps. Optimize prompts for accuracy and performance with the local LLM.
+
+# Test Strategy:
+Test analysis with various process models and policy documents. Verify accuracy of compliance gap identification. Test reference tracking to source documents. Measure performance and optimize as needed.
