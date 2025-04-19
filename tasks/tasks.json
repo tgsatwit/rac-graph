@@ -87,7 +87,7 @@
       "id": 8,
       "title": "Develop Automatic Process Extraction from Documents",
       "description": "Create the AI-driven system to automatically generate draft process models from uploaded documentation.",
-      "status": "in-progress",
+      "status": "done",
       "dependencies": [
         3,
         4,
