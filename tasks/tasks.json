@@ -51,7 +51,7 @@
       "id": 5,
       "title": "Develop Process Modeling Graph Database Schema",
       "description": "Design and implement the Neo4j graph database schema for representing business processes, risks, and controls.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         1
       ],

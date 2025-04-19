@@ -37,4 +37,11 @@ export async function closeNeo4jConnection(): Promise<void> {
 
 // Export document functions
 export * from './documents';
-export * from './embeddings'; 
+export * from './embeddings';
+
+// Export process modeling schema and functions
+export * from './schema';
+export * from './models';
+export * from './process';
+export * from './process-step';
+export * from './risk-control'; 
