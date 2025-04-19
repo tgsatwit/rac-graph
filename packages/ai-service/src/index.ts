@@ -36,4 +36,10 @@ export * from './llm';
 export * from './vectors';
 
 // LangGraph orchestration
-export * from './workflow'; 
+export * from './workflow';
+
+// Process extraction
+export * from './process-extraction';
+
+// Process extraction with LangGraph 
+export * from './process-extraction/index'; 

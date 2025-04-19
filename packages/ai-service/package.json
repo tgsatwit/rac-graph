@@ -6,20 +6,25 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external shared",
+    "dev": "tsup src/index.ts --format cjs,esm --watch --dts --external shared",
     "lint": "eslint \"src/**/*.ts*\"",
-    "test": "vitest"
+    "test": "vitest",
+    "test-ai": "RUN_AI_TESTS=true vitest run"
   },
   "dependencies": {
+    "@langchain/langgraph": "^0.0.16",
     "@pinecone-database/pinecone": "^1.1.2",
     "langchain": "^0.0.214",
-    "langgraph": "^0.0.24"
+    "node-fetch": "^2.6.7",
+    "shared": "workspace:*",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.6.4",
     "eslint": "^8.56.0",
     "tsup": "^7.2.0",
     "typescript": "^5.3.3",
     "vitest": "^1.2.2"
   }
-} 
+}

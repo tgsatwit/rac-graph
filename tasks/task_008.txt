@@ -1,6 +1,6 @@
 # Task ID: 8
 # Title: Develop Automatic Process Extraction from Documents
-# Status: pending
+# Status: in-progress
 # Dependencies: 3, 4, 5, 6
 # Priority: medium
 # Description: Create the AI-driven system to automatically generate draft process models from uploaded documentation.
