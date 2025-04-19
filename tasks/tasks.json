@@ -14,7 +14,7 @@
       "id": 2,
       "title": "Implement User Authentication and Role Management",
       "description": "Develop the authentication system with role-based access control for Admin, Analyst, and Reviewer roles.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         1
       ],
@@ -26,7 +26,7 @@
       "id": 3,
       "title": "Develop Knowledge Base Document Management",
       "description": "Create the system for uploading, categorizing, and managing policy and regulatory documents.",
-      "status": "pending",
+      "status": "done",
       "dependencies": [
         1,
         2

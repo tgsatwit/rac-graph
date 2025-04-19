@@ -1,6 +1,9 @@
 ---
-description: 
+description: TypeScript coding standards and type safety guidelines
 globs: 
 alwaysApply: false
 ---
- 
+- Enable strict mode in your `tsconfig.json` for better type checking
+- Use type aliases for complex types to improve readability
+- Leverage utility types like `Partial`, `Readonly`, and `Pick` for type manipulation
+- Implement proper type guards for runtime type checking

@@ -1,6 +1,6 @@
 # Task ID: 2
 # Title: Implement User Authentication and Role Management
-# Status: pending
+# Status: done
 # Dependencies: 1
 # Priority: high
 # Description: Develop the authentication system with role-based access control for Admin, Analyst, and Reviewer roles.

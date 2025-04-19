@@ -33,4 +33,7 @@ export async function closeNeo4jConnection(): Promise<void> {
     await driver.close();
     driver = null;
   }
-} 
+}
+
+// Export document functions
+export * from './documents'; 
