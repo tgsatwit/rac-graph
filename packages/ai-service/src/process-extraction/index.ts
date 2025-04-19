@@ -16,8 +16,16 @@ export interface ProcessEdge {
 }
 
 export interface ProcessModel {
+  id: string;
   title: string;
   description?: string;
+  nodes: ProcessNode[];
+  edges: ProcessEdge[];
+  version: number;
+  createdBy: string;
+  updatedBy: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ConfidenceScore {
@@ -137,7 +145,32 @@ export async function extractProcess(
                            content.match(/{[\s\S]*}/);
           
           const jsonContent = jsonMatch ? jsonMatch[0] : content;
-          return JSON.parse(jsonContent.replace(/```json|```/g, "").trim()) as ProcessExtractionResult;
+          const parsed = JSON.parse(jsonContent.replace(/```json|```/g, "").trim());
+          
+          // Convert the LLM response to our expanded ProcessModel format
+          if (parsed.processModel && parsed.nodes && parsed.edges) {
+            const processModel = {
+              id: parsed.processModel.id || Math.random().toString(36).substring(2, 15),
+              title: parsed.processModel.title || 'Untitled Process',
+              description: parsed.processModel.description || '',
+              nodes: parsed.nodes,
+              edges: parsed.edges,
+              version: 1,
+              createdBy: 'system',
+              updatedBy: 'system',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            };
+            
+            return {
+              processModel,
+              nodes: parsed.nodes || [],
+              edges: parsed.edges || [],
+              confidenceScores: parsed.confidenceScores || []
+            } as ProcessExtractionResult;
+          }
+          
+          return parsed as ProcessExtractionResult;
         } catch (error) {
           console.error("Failed to parse LLM response:", error);
           throw new Error("Failed to parse process extraction result");
@@ -185,9 +218,22 @@ export function postProcessResults(result: ProcessExtractionResult): ProcessExtr
     }
     return false;
   });
+
+  // Ensure processModel has all required properties
+  const processModel = {
+    ...result.processModel,
+    id: result.processModel.id || Math.random().toString(36).substring(2, 15),
+    nodes: processedNodes,
+    edges: processedEdges,
+    version: result.processModel.version || 1,
+    createdBy: result.processModel.createdBy || 'system',
+    updatedBy: result.processModel.updatedBy || 'system',
+    createdAt: result.processModel.createdAt || new Date(),
+    updatedAt: result.processModel.updatedAt || new Date()
+  };
   
   return {
-    processModel: result.processModel,
+    processModel,
     nodes: processedNodes,
     edges: processedEdges,
     confidenceScores: processedScores

@@ -430,8 +430,16 @@ export async function runProcessExtractionWorkflow(
   
   // Create the result object
   const defaultProcessModel: ProcessModel = {
+    id: 'default-process-id',
     title: 'Untitled Process',
-    description: 'No process model could be extracted'
+    description: 'No process model could be extracted',
+    nodes: [],
+    edges: [],
+    version: 1,
+    createdBy: 'system',
+    updatedBy: 'system',
+    createdAt: new Date(),
+    updatedAt: new Date()
   };
   
   const processExtractionResult: ProcessExtractionResult = {
