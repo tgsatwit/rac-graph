@@ -1,5 +1,5 @@
 import React from 'react';
-import RiskManagementDashboard from '@/components/risk/RiskManagementDashboard';
+import RiskManagementDashboard from '../../../components/risk/RiskManagementDashboard';
 
 export const metadata = {
   title: 'Risk Management | RACGraph',

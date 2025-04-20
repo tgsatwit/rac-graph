@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ControlType, ControlEffectiveness } from '@/lib/types';
+import { ControlType, ControlEffectiveness } from '../../lib/types';
 
 interface Control {
   id: string;

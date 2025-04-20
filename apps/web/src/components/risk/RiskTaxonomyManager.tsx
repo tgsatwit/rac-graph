@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RiskSeverity, RiskLikelihood } from '@/lib/types';
+import { RiskSeverity, RiskLikelihood } from '../../lib/types';
 
 interface RiskCategory {
   id: string;

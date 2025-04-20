@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signOut } from '../lib/auth';
 import { useAuth } from '../contexts/AuthContext';
+import { UserCircleIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 
 export default function DashboardHeader() {
   const { user } = useAuth();
@@ -19,25 +20,26 @@ export default function DashboardHeader() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white shadow-sm border-b border-blue-gray-200">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/dashboard" className="text-xl font-bold text-gray-800">
-              RAC Graph
-            </Link>
+            <span className="text-lg font-semibold text-text-dark">Dashboard</span>
           </div>
           <div className="flex items-center space-x-4">
             {user && (
-              <div className="flex items-center">
-                <div className="text-sm text-gray-700 mr-2">
+              <div className="flex items-center space-x-3">
+                <UserCircleIcon className="h-6 w-6 text-text-muted" />
+                <div className="text-sm text-text-default hidden sm:block">
                   {user.email}
                 </div>
                 <button
-                  className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  title="Sign out"
+                  className="flex items-center text-sm font-medium text-text-muted hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary rounded-md p-1"
                   onClick={handleSignOut}
                 >
-                  Sign out
+                  <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                  <span className="sr-only">Sign out</span>
                 </button>
               </div>
             )}

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// Remove Inter font, use Open Sans defined in globals.css via Tailwind
+// import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from './_providers';
 import { AuthProvider } from '../contexts/AuthContext';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'RAC Graph - Process Compliance and Risk Management',
@@ -18,11 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      {/* Remove inter.className, font-sans is applied globally in globals.css */}
+      {/* <body className={inter.className}> */}
+      <body>
         <AuthProvider>
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </AuthProvider>
       </body>
     </html>
