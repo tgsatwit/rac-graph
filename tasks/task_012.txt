@@ -1,6 +1,6 @@
 # Task ID: 12
 # Title: Implement Real-time Collaboration Features
-# Status: pending
+# Status: done
 # Dependencies: 2, 6
 # Priority: medium
 # Description: Develop the system for real-time collaborative editing of process models with conflict resolution.

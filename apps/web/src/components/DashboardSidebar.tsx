@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import { UserRole } from 'shared';
-import { HomeIcon, UsersIcon, BookOpenIcon, MagnifyingGlassIcon, CogIcon, PresentationChartLineIcon, ExclamationTriangleIcon, DocumentChartBarIcon } from '@heroicons/react/24/outline'; // Example using Heroicons
+import { HomeIcon, UsersIcon, BookOpenIcon, MagnifyingGlassIcon, CogIcon, PresentationChartLineIcon, ExclamationTriangleIcon, DocumentChartBarIcon, FolderIcon } from '@heroicons/react/24/outline'; // Example using Heroicons
 
 interface MenuItem {
   name: string;
@@ -16,6 +16,7 @@ interface MenuItem {
 const menuItems: Record<UserRole, MenuItem[]> = {
   [UserRole.ADMIN]: [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+    { name: 'Projects', href: '/dashboard/projects', icon: FolderIcon },
     { name: 'Users', href: '/dashboard/users', icon: UsersIcon },
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: BookOpenIcon },
     { name: 'Search KB', href: '/dashboard/knowledge/search', icon: MagnifyingGlassIcon },
@@ -25,6 +26,7 @@ const menuItems: Record<UserRole, MenuItem[]> = {
   ],
   [UserRole.ANALYST]: [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+    { name: 'Projects', href: '/dashboard/projects', icon: FolderIcon },
     { name: 'Knowledge Base', href: '/dashboard/knowledge', icon: BookOpenIcon },
     { name: 'Search KB', href: '/dashboard/knowledge/search', icon: MagnifyingGlassIcon },
     { name: 'Process Models', href: '/dashboard/processes', icon: PresentationChartLineIcon }, // Placeholder
@@ -34,6 +36,7 @@ const menuItems: Record<UserRole, MenuItem[]> = {
   ],
   [UserRole.REVIEWER]: [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+    { name: 'Projects', href: '/dashboard/projects', icon: FolderIcon },
     { name: 'Process Models', href: '/dashboard/processes', icon: PresentationChartLineIcon }, // Placeholder
     { name: 'Risk Management', href: '/dashboard/risk-management', icon: ExclamationTriangleIcon },
     { name: 'Analysis', href: '/dashboard/analysis', icon: MagnifyingGlassIcon }, // Placeholder

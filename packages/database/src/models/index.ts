@@ -2,7 +2,7 @@
  * Model interfaces for graph database entities
  */
 
-import { BaseNode, ProcessStepStatus, RiskSeverity, RiskLikelihood, ControlType, ControlEffectiveness, DecisionOutcomeType } from './types';
+import { BaseNode, ProcessStepStatus, RiskSeverity, RiskLikelihood, ControlType, ControlEffectiveness, DecisionOutcomeType, AnalysisResultStatus, AnalysisVersionStatus, ProjectStatus } from './types';
 
 // Process model
 export interface Process extends BaseNode {
@@ -13,6 +13,19 @@ export interface Process extends BaseNode {
   tags: string[];
   version: string;
   isActive: boolean;
+  metadata?: Record<string, any>;
+}
+
+// Project model
+export interface Project extends BaseNode {
+  name: string;
+  description: string;
+  businessArea: string;
+  owner: string;
+  status: ProjectStatus;
+  team: string[];
+  documentIds: string[];
+  processModelIds: string[];
   metadata?: Record<string, any>;
 }
 
@@ -80,5 +93,32 @@ export interface Version extends BaseNode {
   createdBy: string;
   notes: string;
   isActive: boolean;
+  metadata?: Record<string, any>;
+}
+
+// Analysis Result model
+export interface AnalysisResult extends BaseNode {
+  projectId: string;
+  processModelId: string;
+  name: string;
+  description: string;
+  status: AnalysisResultStatus;
+  summary: string;
+  completedAt?: Date;
+  executedBy: string;
+  error?: string;
+  metadata?: Record<string, any>;
+}
+
+// Analysis Version model
+export interface AnalysisVersion extends BaseNode {
+  analysisResultId: string;
+  versionNumber: string;
+  status: AnalysisVersionStatus;
+  findings: string; // JSON string of findings
+  data: string; // JSON string of raw data
+  createdBy: string;
+  notes?: string;
+  comparisonWithPrevious?: string; // JSON string of differences from previous version
   metadata?: Record<string, any>;
 } 

@@ -1,32 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 82, 95, 127; /* text-default */
-  --background-rgb: 248, 249, 254; /* background-default */
-}
-
-/* Remove dark mode overrides for now, apply Argon theme directly */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 10, 10, 20;
-  }
-} */
-
-body {
-  @apply font-sans text-text-default;
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-}
-
-
-
 @layer base {
   :root {
+    /* Horizon Base Variables */
+    --background-100: #ffffff;
+    --background-900: #0b1437;
+
+    /* Horizon Brand Colors (mapped to horizonBlue) */
+    --color-50: #EBEFFF;
+    --color-100: #D6DFFF;
+    --color-200: #ADBFFF;
+    --color-300: #8AA3FF;
+    --color-400: #6183FF;
+    --color-500: #3965FF; /* Main Brand Color */
+    --color-600: #0036FA;
+    --color-700: #0029BD;
+    --color-800: #001B7A;
+    --color-900: #000D3D;
+
+    /* Horizon Shadow Variable */
+    --shadow-100: 0px 18px 40px rgba(112, 144, 176, 0.12);
+
+    /* Shadcn/ui variables (light mode) */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -53,7 +54,28 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
+    /* Horizon Base Variables - Dark */
+    --background-100: #0b1437;
+    --background-900: #ffffff;
+
+    /* Horizon Brand Colors - Dark (Mapped) */
+    --color-50: #00071F;
+    --color-100: #000D3D;
+    --color-200: #001B7A;
+    --color-300: #0029BD;
+    --color-400: #0036FA;
+    --color-500: #8AA3FF; /* Lighter blue for dark mode brand */
+    --color-600: #ADBFFF;
+    --color-700: #D6DFFF;
+    --color-800: #EBEFFF;
+    --color-900: #ffffff;
+
+    /* Horizon Shadow Variable - Dark */
+    --shadow-100: 0px 18px 40px rgba(20, 30, 70, 0.12);
+
+    /* Shadcn/ui variables (dark mode) */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -79,15 +101,18 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-
-
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-dm text-base font-medium;
+  }
+}
+
+@layer utilities {
+  .font-dm {
+    @apply font-['DM_Sans',_sans-serif];
   }
 } 

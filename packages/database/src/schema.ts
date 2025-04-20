@@ -6,6 +6,7 @@
  */
 
 import { getNeo4jDriver } from './index';
+import { Session, ManagedTransaction } from 'neo4j-driver';
 
 // Node Labels
 export enum NodeLabel {
@@ -15,7 +16,10 @@ export enum NodeLabel {
   Risk = 'Risk',
   Control = 'Control',
   Owner = 'Owner',
-  Version = 'Version'
+  Version = 'Version',
+  AnalysisResult = 'AnalysisResult',
+  AnalysisVersion = 'AnalysisVersion',
+  Project = 'Project'
 }
 
 // Relationship Types
@@ -29,7 +33,9 @@ export enum RelationshipType {
   HAS_VERSION = 'HAS_VERSION',
   DEPENDS_ON = 'DEPENDS_ON',
   ALTERNATIVE = 'ALTERNATIVE',
-  PART_OF = 'PART_OF'
+  PART_OF = 'PART_OF',
+  BELONGS_TO = 'BELONGS_TO',
+  INCLUDES = 'INCLUDES'
 }
 
 /**
@@ -76,6 +82,21 @@ export async function initializeSchema(): Promise<void> {
       FOR (v:${NodeLabel.Version}) REQUIRE v.id IS UNIQUE
     `);
     
+    await session.run(`
+      CREATE CONSTRAINT analysis_result_id IF NOT EXISTS
+      FOR (a:${NodeLabel.AnalysisResult}) REQUIRE a.id IS UNIQUE
+    `);
+    
+    await session.run(`
+      CREATE CONSTRAINT analysis_version_id IF NOT EXISTS
+      FOR (v:${NodeLabel.AnalysisVersion}) REQUIRE v.id IS UNIQUE
+    `);
+    
+    await session.run(`
+      CREATE CONSTRAINT project_id IF NOT EXISTS
+      FOR (p:${NodeLabel.Project}) REQUIRE p.id IS UNIQUE
+    `);
+    
     // Create indexes for better performance
     await session.run(`
       CREATE INDEX IF NOT EXISTS FOR (p:${NodeLabel.Process}) ON (p.name)
@@ -91,6 +112,26 @@ export async function initializeSchema(): Promise<void> {
     
     await session.run(`
       CREATE INDEX IF NOT EXISTS FOR (c:${NodeLabel.Control}) ON (c.type)
+    `);
+    
+    await session.run(`
+      CREATE INDEX IF NOT EXISTS FOR (a:${NodeLabel.AnalysisResult}) ON (a.projectId)
+    `);
+    
+    await session.run(`
+      CREATE INDEX IF NOT EXISTS FOR (a:${NodeLabel.AnalysisResult}) ON (a.processModelId)
+    `);
+    
+    await session.run(`
+      CREATE INDEX IF NOT EXISTS FOR (p:${NodeLabel.Project}) ON (p.name)
+    `);
+    
+    await session.run(`
+      CREATE INDEX IF NOT EXISTS FOR (p:${NodeLabel.Project}) ON (p.businessArea)
+    `);
+    
+    await session.run(`
+      CREATE INDEX IF NOT EXISTS FOR (p:${NodeLabel.Project}) ON (p.status)
     `);
     
     console.log('Neo4j schema initialized with constraints and indexes');
@@ -120,4 +161,33 @@ export async function clearSchema(): Promise<void> {
   } finally {
     await session.close();
   }
+}
+
+/**
+ * Run a transaction with the given function
+ * @param operation The operation to run within the transaction
+ * @returns The result of the operation
+ */
+export async function runTransaction<T>(operation: (session: Session | ManagedTransaction) => Promise<T>): Promise<T> {
+  const driver = getNeo4jDriver();
+  const session = driver.session();
+  
+  try {
+    // Run the operation within a transaction
+    const result = await session.executeWrite(async (tx) => {
+      return operation(tx);
+    });
+    
+    return result;
+  } finally {
+    await session.close();
+  }
+}
+
+/**
+ * Get the current Neo4j driver instance
+ * @returns The Neo4j driver instance
+ */
+export function getCurrentInstance() {
+  return getNeo4jDriver();
 } 

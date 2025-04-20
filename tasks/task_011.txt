@@ -1,6 +1,6 @@
 # Task ID: 11
 # Title: Develop Risk Assessment and Control Evaluation Agents
-# Status: pending
+# Status: done
 # Dependencies: 9, 10
 # Priority: high
 # Description: Create the specialized AI agents for identifying unmitigated risks and evaluating control effectiveness.

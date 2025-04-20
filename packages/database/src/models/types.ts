@@ -18,6 +18,15 @@ export enum ProcessStepStatus {
   SKIPPED = 'SKIPPED'
 }
 
+// Project status
+export enum ProjectStatus {
+  PLANNING = 'PLANNING',
+  ACTIVE = 'ACTIVE',
+  ON_HOLD = 'ON_HOLD',
+  COMPLETED = 'COMPLETED',
+  ARCHIVED = 'ARCHIVED'
+}
+
 // Risk severity levels
 export enum RiskSeverity {
   LOW = 'LOW',
@@ -57,4 +66,18 @@ export enum DecisionOutcomeType {
   REJECTION = 'REJECTION',
   CONDITIONAL = 'CONDITIONAL',
   ESCALATION = 'ESCALATION'
+}
+
+// Analysis result status
+export enum AnalysisResultStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
+  FAILED = 'FAILED'
+}
+
+// Analysis version status
+export enum AnalysisVersionStatus {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  ARCHIVED = 'ARCHIVED'
 } 
