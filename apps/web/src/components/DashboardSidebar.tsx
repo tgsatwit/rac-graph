@@ -1,10 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import { UserRole } from 'shared';
 
+interface MenuItem {
+  name: string;
+  href: string;
+  icon: string;
+}
+
 // Menu items based on user role
-const menuItems = {
+const menuItems: Record<UserRole, MenuItem[]> = {
   [UserRole.ADMIN]: [
     { name: 'Dashboard', href: '/dashboard', icon: '📊' },
     { name: 'Users', href: '/dashboard/users', icon: '👥' },
@@ -33,11 +41,11 @@ const menuItems = {
 };
 
 export default function DashboardSidebar() {
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
   const pathname = usePathname();
 
   // Default to Reviewer role if user or role not available
-  const userRole = currentUser?.role || UserRole.REVIEWER;
+  const userRole = (user as any)?.role as UserRole || UserRole.REVIEWER;
   const items = menuItems[userRole] || menuItems[UserRole.REVIEWER];
 
   return (
@@ -48,7 +56,7 @@ export default function DashboardSidebar() {
       
       <nav>
         <ul className="space-y-2">
-          {items.map((item) => (
+          {items.map((item: MenuItem) => (
             <li key={item.href}>
               <Link
                 href={item.href}

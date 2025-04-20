@@ -1,28 +1,23 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Define paths that don't require authentication
-const publicPaths = ['/', '/login', '/register', '/reset-password'];
+// Add paths that don't require authentication
+const publicPaths = ['/login', '/register', '/reset-password'];
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  
-  // Allow access to public paths
-  if (publicPaths.some(path => pathname === path || pathname.startsWith(`${path}/`))) {
-    return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  const sessionCookie = request.cookies.get('session')?.value;
+  const isPublicPath = publicPaths.some(path => request.nextUrl.pathname.startsWith(path));
+
+  // If no session cookie and trying to access protected route, redirect to login
+  if (!sessionCookie && !isPublicPath) {
+    return NextResponse.redirect(new URL('/login', request.url));
   }
-  
-  // Check if the user has a session token
-  const token = request.cookies.get('auth-token')?.value;
-  
-  // If no token is found, redirect to login page
-  if (!token) {
-    const url = new URL('/login', request.url);
-    url.searchParams.set('from', pathname);
-    return NextResponse.redirect(url);
+
+  // If has session cookie and trying to access public route, redirect to dashboard
+  if (sessionCookie && isPublicPath) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
-  
-  // Continue to the protected route
+
   return NextResponse.next();
 }
 

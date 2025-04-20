@@ -1,10 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signOut } from '../lib/auth';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function DashboardHeader() {
-  const { currentUser } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -26,10 +28,10 @@ export default function DashboardHeader() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            {currentUser && (
+            {user && (
               <div className="flex items-center">
                 <div className="text-sm text-gray-700 mr-2">
-                  {currentUser.name} ({currentUser.role})
+                  {user.email}
                 </div>
                 <button
                   className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
